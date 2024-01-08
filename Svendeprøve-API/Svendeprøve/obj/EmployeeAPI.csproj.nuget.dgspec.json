@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj": {}
+    "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\EmployeeAPI.csproj": {}
   },
   "projects": {
-    "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj": {
+    "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\EmployeeAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj",
-        "projectName": "Svendeprøve",
-        "projectPath": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj",
+        "projectUniqueName": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\EmployeeAPI.csproj",
+        "projectName": "EmployeeAPI",
+        "projectPath": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\EmployeeAPI.csproj",
         "packagesPath": "C:\\Users\\adam.winther\\.nuget\\packages\\",
         "outputPath": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\obj\\",
         "projectStyle": "PackageReference",
@@ -44,6 +44,20 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.14, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
