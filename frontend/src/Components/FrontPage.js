@@ -53,8 +53,16 @@ function FrontPage() {
 
   return (
     <div className="front-page">
-      <div className="login-text" onClick={() => setShowLoginForm(true)}>
-        Log in
+      <div className="login-form-container">
+        <div className="login-area">
+          <div
+            className="login-text"
+            onClick={() => setShowLoginForm(!showLoginForm)}
+          >
+            Admin login
+          </div>
+          {showLoginForm && <LoginForm />}
+        </div>
       </div>
       <div className="search-container">
         <span className="magnifying-glass">🔍</span>
@@ -119,8 +127,6 @@ function FrontPage() {
           </div>
         ))}
       </div>
-
-      {showLoginForm && <LoginForm />}
     </div>
   );
 }

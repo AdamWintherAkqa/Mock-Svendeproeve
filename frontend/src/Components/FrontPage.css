@@ -6,13 +6,10 @@
   padding-top: 15%; /* Space from the top of the page to the search bar */
 }
 
-.login-text {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  text-decoration: underline;
-  color: white; /* Ensure visibility on a black background */
+.header {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+  padding: 20px; /* Adjust as needed */
 }
 
 .search-container {
@@ -116,6 +113,7 @@
   text-decoration: underline;
 }
 
+/* Used for filter later on */
 .selected {
   text-decoration: line-through;
 }
