@@ -1,55 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FrontPage.css";
-import LoginForm from "./LoginForm"; // Make sure this path is correct
-import "./Global.css";
-import "./LoginForm";
-
-const mockPeopleData = [
-  {
-    name: "Alice Johnson",
-    studios: "Copenhagen",
-    jobTitle: "Software Engineer",
-    projects: ["Project Alpha"],
-    expertise: ["Java", "React"],
-    image: "/images/MockPhoto2.jpg",
-  },
-  {
-    name: "Bob Smith",
-    studios: "Copenhagen",
-    jobTitle: "Network Engineer",
-    projects: ["Project Delta"],
-    expertise: ["Cybersecurity"],
-    image: "/images/MockPhoto1.jpg",
-  },
-  {
-    name: "Carol White",
-    studios: "Aarhus",
-    jobTitle: "QA Specialist",
-    projects: ["Project Gamma"],
-    expertise: ["Automated Testing", "Manual Testing"],
-    image: "/images/MockPhoto3.jpg",
-  },
-  {
-    name: "David Brown",
-    studios: "Aarhus",
-    jobTitle: "Data Scientist",
-    projects: ["Project Beta"],
-    expertise: ["Python", "Machine Learning"],
-    image: "/images/MockPhoto4.jpg",
-  },
-];
+import LoginForm from "./LoginForm";
+import { useNavigate } from "react-router-dom";
 
 function FrontPage() {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+  const [peopleData, setPeopleData] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState({
+    studios: [],
+    titles: [],
+    projects: [],
+    expertise: [],
+  });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/jsontestdata/peopleData.txt")
+      .then((response) => response.json())
+      .then((data) => setPeopleData(data))
+      .catch((error) => console.error("Error fetching people data:", error));
+  }, []);
 
   const handleToggleFilters = () => {
     setShowFilters(!showFilters);
   };
 
   const handleClearFilters = () => {
-    // Logic to clear selected filters (to be implemented)
+    setSelectedFilters({
+      studios: [],
+      titles: [],
+      projects: [],
+      expertise: [],
+    });
   };
+
+  const handleLoginSuccess = () => {
+    navigate("/admin");
+  };
+
+  // Function to get unique values from data
+  const getUniqueValues = (data, key) => {
+    return Array.from(new Set(data.map((item) => item[key]))).sort();
+  };
+
+  // Function to get unique values for array type data
+  const getUniqueValuesForArray = (data, key) => {
+    const allValues = data.flatMap((item) => item[key]);
+    return Array.from(new Set(allValues)).sort();
+  };
+  const toggleFilter = (category, value) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [category]: prev[category].includes(value)
+        ? prev[category].filter((item) => item !== value)
+        : [...prev[category], value],
+    }));
+  };
+
+  // Extracting unique filter values
+  const studios = getUniqueValues(peopleData, "studios");
+  const titles = getUniqueValues(peopleData, "jobTitle");
+  const projects = getUniqueValuesForArray(peopleData, "projects");
+  const expertise = getUniqueValuesForArray(peopleData, "expertise");
 
   return (
     <div className="front-page">
@@ -61,9 +75,10 @@ function FrontPage() {
           >
             Admin login
           </div>
-          {showLoginForm && <LoginForm />}
+          {showLoginForm && <LoginForm onLoginSuccess={handleLoginSuccess} />}
         </div>
       </div>
+
       <div className="search-container">
         <span className="magnifying-glass">🔍</span>
         <input
@@ -72,6 +87,7 @@ function FrontPage() {
           className="search-input"
         />
       </div>
+
       <div className="filters-actions">
         <div className="filters-button" onClick={handleToggleFilters}>
           Filters
@@ -83,40 +99,71 @@ function FrontPage() {
 
       {showFilters && (
         <div className="filters-panels">
+          {/* Studios */}
           <div className="filter-panel">
             <h3>Studios</h3>
-            <div>Copenhagen</div>
-            <div>Aarhus</div>
+            {studios.map((studio) => (
+              <div
+                key={studio}
+                onClick={() => toggleFilter("studios", studio)}
+                className={
+                  selectedFilters.studios.includes(studio) ? "selected" : ""
+                }
+              >
+                {studio}
+              </div>
+            ))}
           </div>
+          {/* Titles */}
           <div className="filter-panel">
-            <h3>Job Titles</h3>
-            <div>Software Engineer</div>
-            <div>Network Engineer</div>
-            <div>QA Specialist</div>
-            <div>Data Scientist</div>
+            <h3>Title</h3>
+            {titles.map((title) => (
+              <div
+                key={title}
+                onClick={() => toggleFilter("titles", title)}
+                className={
+                  selectedFilters.titles.includes(title) ? "selected" : ""
+                }
+              >
+                {title}
+              </div>
+            ))}
           </div>
+          {/* Projects */}
           <div className="filter-panel">
             <h3>Projects</h3>
-            <div>Project Alpha</div>
-            <div>Project Beta</div>
-            <div>Project Delta</div>
-            <div>Project Gamma</div>
+            {projects.map((project) => (
+              <div
+                key={project}
+                onClick={() => toggleFilter("projects", project)}
+                className={
+                  selectedFilters.projects.includes(project) ? "selected" : ""
+                }
+              >
+                {project}
+              </div>
+            ))}
           </div>
+          {/* Expertise */}
           <div className="filter-panel">
             <h3>Expertise</h3>
-            <div>Java</div>
-            <div>React</div>
-            <div>Cybersecurity</div>
-            <div>Automated Testing</div>
-            <div>Manual Testing</div>
-            <div>Python</div>
-            <div>Machine Learning</div>
+            {expertise.map((expert) => (
+              <div
+                key={expert}
+                onClick={() => toggleFilter("expertise", expert)}
+                className={
+                  selectedFilters.expertise.includes(expert) ? "selected" : ""
+                }
+              >
+                {expert}
+              </div>
+            ))}
           </div>
         </div>
       )}
 
       <div className="people-container">
-        {mockPeopleData.map((person, index) => (
+        {peopleData.map((person, index) => (
           <div key={index} className="person">
             <img src={person.image} alt={person.name} />
             <h3>{person.name}</h3>

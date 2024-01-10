@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LoginForm.css";
 
-function LoginForm() {
+function LoginForm({ onLoginSuccess }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [adminCredentials, setAdminCredentials] = useState({});
+
+  useEffect(() => {
+    fetch("/jsontestdata/adminMockLogin.txt")
+      .then((response) => response.json())
+      .then((data) => setAdminCredentials(data))
+      .catch((error) =>
+        console.error("Error fetching admin credentials:", error)
+      );
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here, you can add logic to handle the login, like sending a request to your server
-    console.log("Login attempt with:", { username, password });
+    if (
+      username === adminCredentials.username &&
+      password === adminCredentials.password
+    ) {
+      console.log("Login successful");
+      onLoginSuccess();
+    } else {
+      console.log("Incorrect username or password");
+    }
   };
 
   return (

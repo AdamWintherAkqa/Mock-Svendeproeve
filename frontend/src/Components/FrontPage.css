@@ -110,7 +110,6 @@
 .filter-panel div {
   cursor: pointer;
   color: white;
-  text-decoration: underline;
 }
 
 /* Used for filter later on */
