@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\git\\Svendeprøve\\Svendeprøve\\Svendeprøve.csproj": {}
+    "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj": {}
   },
   "projects": {
-    "D:\\git\\Svendeprøve\\Svendeprøve\\Svendeprøve.csproj": {
+    "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\git\\Svendeprøve\\Svendeprøve\\Svendeprøve.csproj",
+        "projectUniqueName": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj",
         "projectName": "Svendeprøve",
-        "projectPath": "D:\\git\\Svendeprøve\\Svendeprøve\\Svendeprøve.csproj",
+        "projectPath": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\Svendeprøve.csproj",
         "packagesPath": "C:\\Users\\adam.winther\\.nuget\\packages\\",
-        "outputPath": "D:\\git\\Svendeprøve\\Svendeprøve\\obj\\",
+        "outputPath": "D:\\git\\Mock-Svendeproeve\\Svendeprøve-API\\Svendeprøve\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\adam.winther\\AppData\\Roaming\\NuGet\\NuGet.Config",
