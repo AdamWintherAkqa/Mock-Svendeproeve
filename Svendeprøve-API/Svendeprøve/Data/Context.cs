@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EmployeeAPI.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeAPI.Data
 {
@@ -19,5 +20,7 @@ namespace EmployeeAPI.Data
             //dbContextOptionsBuilder.UseSqlServer(
             //    @"Server=10.22.24.204;Database=TeamFinder_Europe;User Id=tmfndr;Password=Flodhest13;TrustServerCertificate=True");
         }
+
+        public DbSet<Employee> Employees { get; set; }
     }
 }
