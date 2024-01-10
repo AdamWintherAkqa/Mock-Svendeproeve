@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./FrontPage.css";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
+import "./Global.css";
 
 function FrontPage() {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -67,6 +68,7 @@ function FrontPage() {
 
   return (
     <div className="front-page">
+      <img src="/images/Logo.png" alt="AKQA Logo" className="logo" />
       <div className="login-form-container">
         <div className="login-area">
           <div
