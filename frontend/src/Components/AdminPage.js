@@ -1,4 +1,6 @@
 import React from "react";
+import "./AdminPage.css";
+import "./Global.css";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function AdminPage() {
@@ -10,9 +12,12 @@ function AdminPage() {
 
   return (
     <div>
-      <h1>ADMIN LOGIN</h1>
+      <div className="front-page">
+      <h1 >ADMIN LOGIN</h1>
+      
       <button onClick={handleGoBack}>Go Back to Frontpage</button>{" "}
       {/* Add a button to go back */}
+    </div>
     </div>
   );
 }
